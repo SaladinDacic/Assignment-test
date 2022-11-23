@@ -1,0 +1,69 @@
+@import "../../Variables";
+.Posts {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  grid-gap: 1%;
+  padding: 2rem 0;
+  
+  &__textContainer {
+    text-decoration: none;
+    font-size: 1.6rem;
+    max-width: 60vw;
+    z-index: 1;
+    color: white;
+    // padding: 2rem 0;
+    &--title {
+      color: $color-white;
+      font-weight: 900;
+      font-size: larger;
+    }
+    &--desc {
+      color: #d2cdc5;
+      font-style: italic;
+      font-weight: 600;
+    }
+  }
+  @media (max-width: 800px) {
+    // margin: 0 auto;
+    min-height: 100vh;
+    height: fit-content;
+    flex-direction: column;
+  }
+
+  @media (max-width: 800px) {
+    grid-template-columns: 100%;
+  }
+
+  &__loader{
+  border: 2rem solid $color-grey-dark-2;;
+  width: 30rem;
+  height: 30rem;
+  margin: 4rem auto;
+  border-color: $color-grey-dark-2;;
+  border-top-color: #99ff33;
+  border-bottom-color: $color-tertiary-light;
+  
+  border-radius: 50%;
+  animation: rotateIt 2s infinite cubic-bezier(0.420, -0.600, 0.670, 1.610);
+}
+
+@keyframes rotateIt{
+  0%{
+    transform: rotate(0deg);
+  }
+
+  100%{
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes itNeverLoads{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+}

@@ -1,0 +1,54 @@
+.GoBack{
+  color: white;
+  font-size: large;
+  padding: 1rem;
+  margin: 2rem 6rem;
+  position: fixed;
+  z-index: 10;
+}
+.PostDetail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: #64472370;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  overflow-y: scroll;
+  padding-top: 3rem;
+
+  &__textContainer {
+    font-size: 1.6rem;
+    max-width: 60vw;
+    z-index: 1;
+    padding: 2rem 0;
+    &--title {
+      font-weight: 900;
+      font-size: larger;
+    }
+    &--desc {
+      color: #d2cdc5;
+      font-style: italic;
+      font-weight: 600;
+    }
+    @media (max-width: 1200px) {
+      width: 45vw;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 800px) {
+      min-width: 80vw;
+      margin-left: unset;
+      margin-right: unset;
+      margin-bottom: 7rem;
+    }
+  }
+  @media (max-width: 800px) {
+    // margin: 0 auto;
+    min-height: 100vh;
+    height: fit-content;
+    flex-direction: column;
+  }
+}
