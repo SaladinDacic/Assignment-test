@@ -42,7 +42,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 6. Components are reusable.
 7. Style is provided.
 8. TypeScript used.
-9. HOC, render prop, Compound implemented 
+9. HOC, render prop, Compound component implemented 
 
 ### Avoided:
 1. 3rd party state management. 
