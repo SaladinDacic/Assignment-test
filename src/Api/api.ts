@@ -18,10 +18,18 @@ export async function getListOfPostsUsingString(str: string) {
     console.log(error);
   }
 }
-export async function getPostDetail(id: string) {
+export async function getPostById(id: number | string) {
+  try {
+    let response = await axios.get(`https://jsonplaceholder.typicode.com/posts?id=${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function getPostDetail(id: string | number) {
   try {
     let response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`);
-    return response;
+    return response.data;
   } catch (error) {
     console.log(error);
   }

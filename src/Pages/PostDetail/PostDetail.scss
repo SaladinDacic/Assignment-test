@@ -1,10 +1,17 @@
-.GoBack{
-  color: white;
-  font-size: large;
-  padding: 1rem;
-  margin: 2rem 6rem;
-  position: fixed;
-  z-index: 10;
+div{
+
+  .navbar{
+    padding: 2rem 4rem 0 4rem;
+    margin: 0 auto;
+    width: 65vw;
+
+    &__GoBack{
+    color: white;
+    font-size: large;
+  }
+    @media (max-width: 800px) {
+    width: 100vw;
+  }
 }
 .PostDetail {
   display: flex;
@@ -13,12 +20,10 @@
   width: 100vw;
   position: relative;
   background-color: #64472370;
-  z-index: 1;
   justify-content: center;
   align-items: center;
   color: white;
   overflow-y: scroll;
-  padding-top: 3rem;
 
   &__textContainer {
     font-size: 1.6rem;
@@ -51,4 +56,5 @@
     height: fit-content;
     flex-direction: column;
   }
+}
 }

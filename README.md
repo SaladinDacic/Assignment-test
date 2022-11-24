@@ -31,7 +31,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 12. All data is typed.
 13. Commented out StrictMode to stop double rendering of components.
 14. Made the app responsive. 
-15. Loading while waiting for data implemented and animated.
+15. Loading while waiting for data implemented and animated, check it offline.
 
 ### Other than that, the specs are completed:
 1. Every component console out his name.
@@ -48,9 +48,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 1. 3rd party state management. 
 2. 3rd party UI component libraries
 
-### Problems faced:
-1. Posts don't have any NAME property, so implemented search filter was implemented using TITLE prop instead of Name.
-2. No information was given on how to build /post{:id}/ page-route, so I listed all comments related to the post when navigating to it.
+
 
 
 

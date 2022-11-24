@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { PostDetail, Posts } from "./Pages";
 import { useEffect, useState } from "react";
 import { Header } from "./Components";
-import { getListOfPosts, getListOfPostsUsingString, getPostDetail } from "./Api";
+import { getListOfPosts, getListOfPostsUsingString, getPostDetail, getPostById } from "./Api";
 import { ConsoleProvider } from "./Context";
 
 export interface IDataProps {
@@ -26,10 +26,14 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [postListData, setPostListData] = useState<IDataProps[]>();
   const [postDetail, setPostDetail] = useState<IDetailedPost[]>();
+  const [postData, setPostData] = useState<IDataProps>();
 
-  async function getDataForPostPage(id: string) {
-    let response = await getPostDetail(id);
-    setPostDetail(response?.data);
+  async function setDataForPostPage(id: string) {
+    let response = await getPostById(id);
+    console.log(response);
+    let response2 = await getPostDetail(id);
+    setPostData(response[0]);
+    setPostDetail(response2);
   }
 
   const onSearch = (search: string) => {
@@ -51,7 +55,7 @@ function App() {
       <ConsoleProvider parentConsole={parentConsole}>
         <Routes>
           <Route path="/posts" element={<Posts postListData={postListData} loading={loading} /* send header prop to render*/ header={HeaderComponentProp} />} />
-          <Route path="/post:id" element={<PostDetail postDetail={postDetail} getPostData={getDataForPostPage} />} />
+          <Route path="/post:id" element={<PostDetail postData={postData} postDetail={postDetail} getPostData={setDataForPostPage} />} />
           <Route path="/*" element={<Navigate to={"/posts"} />} />
         </Routes>
       </ConsoleProvider>
