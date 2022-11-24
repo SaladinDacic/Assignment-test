@@ -21,16 +21,19 @@ export interface IDetailedPost {
 }
 
 function App() {
-  const parentConsole = "Hello from ";
   const [searchInputString, setSearchInputString] = useState("");
   const [loading, setLoading] = useState(false);
   const [postListData, setPostListData] = useState<IDataProps[]>();
   const [postDetail, setPostDetail] = useState<IDetailedPost[]>();
   const [postData, setPostData] = useState<IDataProps>();
 
+  const consoleLocation = ({ child }: { child: string }) => {
+    const parentConsole = "Hello from ";
+    console.log(`${parentConsole}${child}`);
+  };
+
   async function setDataForPostPage(id: string) {
     let response = await getPostById(id);
-    console.log(response);
     let response2 = await getPostDetail(id);
     setPostData(response[0]);
     setPostDetail(response2);
@@ -52,7 +55,7 @@ function App() {
   const HeaderComponentProp = <Header onSearch={onSearch} searchInputString={searchInputString} />;
   return (
     <div className="App">
-      <ConsoleProvider parentConsole={parentConsole}>
+      <ConsoleProvider consoleLocation={consoleLocation}>
         <Routes>
           <Route path="/posts" element={<Posts postListData={postListData} loading={loading} /* send header prop to render*/ header={HeaderComponentProp} />} />
           <Route path="/post:id" element={<PostDetail postData={postData} postDetail={postDetail} getPostData={setDataForPostPage} />} />

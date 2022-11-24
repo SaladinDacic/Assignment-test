@@ -15,7 +15,7 @@ interface IPostComments {
   name: string;
 }
 export const Posts = withLanding(({ loading, postListData }: IPostProps) => {
-  const { parentConsole } = useContext(ConsoleContext);
+  const { consoleLocation } = useContext(ConsoleContext);
   const childConsole = "Posts route page";
   const [expandedPosts, setExpandedPosts] = useState<{ [key: string]: any }>({});
 
@@ -39,16 +39,16 @@ export const Posts = withLanding(({ loading, postListData }: IPostProps) => {
   };
 
   useEffect(() => {
-    console.log(`${parentConsole}${childConsole}`);
+    consoleLocation({ child: childConsole });
   }, []);
 
   return (
     <>
       {postListData && !loading ? (
         <div className="Posts">
-          {postListData.map((postObj: IDataProps) => {
+          {postListData.map((postObj: IDataProps, idx: number) => {
             return (
-              <div>
+              <div key={idx}>
                 <Link className="Posts__textContainer" key={postObj.id} to={`/post${postObj.id}`}>
                   <h3 className="Posts__textContainer--title">PostId:{postObj.id}</h3>
                   <h4>UserId:{postObj.userId}</h4>

@@ -10,11 +10,11 @@ interface ILandingProps {
 }
 export const withLanding = (OldComponent: any) => {
   const Landing = (props: ILandingProps) => {
-    const { parentConsole } = useContext(ConsoleContext);
+    const { consoleLocation } = useContext(ConsoleContext);
     const childConsole = "withLanding HOC";
 
     useEffect(() => {
-      console.log(`${parentConsole}${childConsole}`);
+      consoleLocation({ child: childConsole });
     }, []);
 
     return (

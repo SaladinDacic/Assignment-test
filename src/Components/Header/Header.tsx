@@ -9,11 +9,11 @@ export interface HeaderProps {
   searchInputString: string;
 }
 export const Header = ({ onSearch, searchInputString }: HeaderProps) => {
-  const { parentConsole } = useContext(ConsoleContext);
+  const { consoleLocation } = useContext(ConsoleContext);
   const childConsole = "Header where Search is located";
 
   useEffect(() => {
-    console.log(`${parentConsole}${childConsole}`);
+    consoleLocation({ child: childConsole });
   }, []);
 
   return (

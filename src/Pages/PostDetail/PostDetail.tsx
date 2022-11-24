@@ -12,11 +12,11 @@ interface IPostDetailProps {
 
 export const PostDetail = ({ postDetail, getPostData, postData }: IPostDetailProps) => {
   let { id } = useParams();
-  const { parentConsole } = useContext(ConsoleContext);
+  const { consoleLocation } = useContext(ConsoleContext);
   const childConsole = `Post${id} route page`;
 
   useEffect(() => {
-    console.log(`${parentConsole}${childConsole}`);
+    consoleLocation({ child: childConsole });
   }, []);
 
   useEffect(() => {
