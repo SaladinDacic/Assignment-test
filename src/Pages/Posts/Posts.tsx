@@ -56,37 +56,7 @@ export const Posts = withLanding(({ loading, postListData }: IPostProps) => {
                   <p className="Posts__textContainer--desc">Body:{postObj.body}</p>
                 </Link>
                 <hr />
-                {shouldExpand(postObj.id) ? (
-                  <div>
-                    {expandedPosts[postObj.id].length ? (
-                      expandedPosts[postObj.id].map((obj: IPostComments, idx: number) => {
-                        return (
-                          <div key={idx}>
-                            <h3>{obj.name} ▸ said:</h3>
-                            <p>{obj.body}</p>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="Posts__loader Posts__loader--small"></div>
-                    )}
-                    <h2
-                      onClick={() => {
-                        subtractThisPost(postObj.id);
-                      }}
-                    >
-                      Hide Comments ▲
-                    </h2>
-                  </div>
-                ) : (
-                  <h2
-                    onClick={() => {
-                      expandThisPost(postObj.id);
-                    }}
-                  >
-                    Show Comments ▼
-                  </h2>
-                )}
+                <Comments expandedPosts={expandedPosts} postObj={postObj} shouldExpand={shouldExpand} expandThisPost={expandThisPost} subtractThisPost={subtractThisPost} />
               </div>
             );
           })}
@@ -97,3 +67,51 @@ export const Posts = withLanding(({ loading, postListData }: IPostProps) => {
     </>
   );
 });
+
+interface ICommentsFragment {
+  expandedPosts: {
+    [key: string]: any;
+  };
+  postObj: IDataProps;
+  expandThisPost: (postId: number) => Promise<void>;
+  subtractThisPost: (postId: number) => void;
+  shouldExpand: (postId: number) => boolean;
+}
+
+const Comments = ({ shouldExpand, expandedPosts, postObj, subtractThisPost, expandThisPost }: ICommentsFragment) => {
+  return (
+    <>
+      {shouldExpand(postObj.id) ? (
+        <div>
+          {expandedPosts[postObj.id].length ? (
+            expandedPosts[postObj.id].map((obj: IPostComments, idx: number) => {
+              return (
+                <div key={idx}>
+                  <h3>{obj.name} ▸ said:</h3>
+                  <p>{obj.body}</p>
+                </div>
+              );
+            })
+          ) : (
+            <div className="Posts__loader Posts__loader--small"></div>
+          )}
+          <h2
+            onClick={() => {
+              subtractThisPost(postObj.id);
+            }}
+          >
+            Hide Comments ▲
+          </h2>
+        </div>
+      ) : (
+        <h2
+          onClick={() => {
+            expandThisPost(postObj.id);
+          }}
+        >
+          Show Comments ▼
+        </h2>
+      )}
+    </>
+  );
+};
